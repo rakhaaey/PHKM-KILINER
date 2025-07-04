@@ -1,59 +1,27 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHCM - Website Kuliner Inovatif</title>
-    <link href="{{ asset('build/assets/app.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        /* Custom CSS Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        @keyframes bounce-subtle {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-3px);
-            }
-        }
-        .animate-bounce-subtle {
-            animation: bounce-subtle 2s infinite ease-in-out;
-        }
+    <title>{{ config('app.name', 'PHCM') }}</title>
 
-        @keyframes pulse-subtle {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.9;
-            }
-        }
-        .animate-pulse-subtle {
-            animation: pulse-subtle 2s infinite ease-in-out;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
-    @include('partials.navbar')
+<body class="font-sans antialiased bg-light-gray text-dark-gray leading-normal tracking-wide">
+    <div class="min-h-screen flex flex-col">
+        @include('partials.navbar')
 
-    <main class="min-h-screen">
-        @yield('content')
-    </main>
+        <main class="flex-grow">
+            @yield('content')
+        </main>
 
-    @include('partials.footer')
-
-    <script src="{{ asset('js/app.js') }}"></script>
+        @include('partials.footer')
+    </div>
 </body>
 </html>
